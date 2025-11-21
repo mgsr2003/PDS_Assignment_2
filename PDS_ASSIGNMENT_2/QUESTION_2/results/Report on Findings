@@ -1,1 +1,58 @@
+1. Understanding the Dataset
 
+The diabetes dataset contains 768 patients and includes health indicators such as Pregnancies, Glucose, BloodPressure, SkinThickness, BMI, Insulin, Age, and Outcome.
+
+There are no major missing values, so the dataset is ready for sampling and bootstrap analysis after minor cleaning.
+
+🔹 A) Findings from Random Sample of 25 (Mean & Max Glucose)
+2. Random sampling observations
+
+A sample of 25 patients was selected using a fixed seed to ensure reproducibility.
+
+The mean Glucose level of the sample was close to the population mean, showing that even small samples can give a reasonable estimate of central tendency.
+
+The maximum Glucose value in the sample was also fairly close to the population maximum, though with more variation because extreme values are harder to capture in small samples.
+
+3. Interpretation
+
+The sample represents the population reasonably well for mean values.
+
+Maximum values are more sensitive to sample size, so small samples may not capture extremes accurately.
+
+🔹 B) Findings from 98th Percentile BMI Comparison
+4. BMI percentile insights
+
+The 98th percentile of BMI in the sample is close to the population’s 98th percentile, but shows more variation due to the small sample size.
+
+High-percentile statistics (like 98th or 99th) tend to fluctuate more when the sample is small.
+
+5. Interpretation
+
+Even though the sample percentile gives a rough estimate, high percentiles require larger samples for stable estimates.
+
+This reinforces why percentile-based health indicators (obesity limits, risk thresholds) should be calculated from large datasets.
+
+🔹 C) Findings from Bootstrap Analysis (500 Samples, n = 150)
+6. Bootstrap mean insights
+
+Running 500 bootstrap samples with 150 patients each showed that the average bootstrap mean of BloodPressure closely matches the population mean.
+
+This indicates bootstrap is a reliable method for estimating the mean.
+
+7. Bootstrap variability insights
+
+The bootstrap standard deviation was also very close to the population standard deviation.
+
+This shows that bootstrap does a good job approximating the spread or variability of BloodPressure.
+
+8. Bootstrap percentile insights
+
+The bootstrap 98th percentile of BloodPressure is close to the population percentile but shows more variation.
+
+High percentiles are always more unstable than means and standard deviations.
+
+9. Interpretation
+
+The bootstrap distribution of means was approximately normal, supporting the Central Limit Theorem.
+
+The small difference between bootstrap and population values shows that bootstrapping is effective for estimating summary statistics when the full population distribution is unknown.
