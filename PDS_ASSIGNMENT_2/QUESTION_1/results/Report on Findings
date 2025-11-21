@@ -1,12 +1,64 @@
-In this assignment, I worked with a used cars dataset to understand how different features affect the market price of a vehicle. 
-The raw data contained several issues like text-based numeric fields (e.g., “18.5 kmpl”, “1197 CC”, “74 bhp”) and missing values. 
-I cleaned these by extracting only numbers and filling missing values with the median for numerical fields and the mode for categorical fields.
+1. Data Cleaning
 
-After cleaning, I converted the categorical variables (Fuel Type and Transmission) into one-hot encoded numerical columns and created a new feature called Car Age, which helped me see how the age of a car affects its value.
+Several numeric columns like Mileage, Engine, Power, and New_Price contained text units (e.g., “18.9 kmpl”, “1197 CC”).
 
-From the exploratory analysis, several patterns became clear. Car prices mostly cluster at the lower end but have a long tail of expensive models.
-Mileage generally showed a negative influence on price — cars driven more tend to sell for less. 
-Engine, power, and newer model years showed a positive relationship with price; stronger engines and newer cars were usually more expensive. 
-Fuel type also played a role, where diesel cars tended to have slightly higher average prices compared to petrol cars.
+These were cleaned by extracting only the numeric part using regex.
 
-Overall, the cleaned dataset and visualizations revealed that the most important factors affecting a used car’s price are its age, engine power, mileage, and fuel type, with age and mileage being the strongest influencers. This analysis helped transform a messy dataset into meaningful insights about how cars depreciate and what features buyers value the most.
+Missing values in numerical features were filled with the median, which avoids distortion from outliers.
+
+Missing values in categorical features (Fuel_Type and Transmission) were filled with the mode (most frequent value).
+
+2. Categorical Encoding
+
+The categorical columns Fuel_Type and Transmission were converted into numerical format using one-hot encoding.
+
+This allowed the dataset to be used for further analysis and future modeling.
+
+3. Feature Engineering
+
+A new column, Car_Age, was created using:
+Car_Age = 2024 – Year
+
+This helped to understand how vehicle age influences the price of a used car.
+
+4. dplyr-style operations performed
+
+Select: Extracted important columns like Price, Mileage, Engine, and Car_Age for focused analysis.
+
+Filter: Selected cars with Car_Age < 10 years to study newer vehicles.
+
+Rename: Renamed columns such as Price → Used_Car_Price for clarity.
+
+Mutate: Added a new feature Price_per_km using Price / Kilometers_Driven.
+
+Arrange: Sorted the dataset by Price (descending) to see the most expensive cars.
+
+Summarise: Used groupby to compute average price by fuel type.
+
+5. Key Data Insights
+
+Car prices are mostly concentrated at the lower‐to‐mid range, with a long tail of high-priced models.
+
+Mileage has a negative impact on price — cars with higher mileage generally sell for less.
+
+Engine size and Power show a positive relationship with price; larger engines and more powerful cars tend to be costlier.
+
+Fuel Type matters: diesel cars show slightly higher average prices compared to petrol.
+
+Newer cars (lower Car_Age) are priced higher, confirming expected depreciation trends.
+
+6. Visual Findings
+
+The Price Histogram shows that most cars are priced at the lower end of the market.
+
+The Mileage vs Price scatter plot reveals that although there is variation, higher mileage tends to reduce car price.
+
+These visualizations support the numerical findings and provide strong evidence of how mileage, engine specifications, and age affect used car pricing.
+
+7. Overall Summary
+
+After cleaning the dataset and transforming categorical/numerical variables, meaningful relationships became visible.
+
+The analysis clearly shows that Car Age, Mileage, Engine Power, and Fuel Type are the main factors influencing used car price.
+
+The dataset is now well-organized, fully cleaned, and ready for further modeling or interpretation.
